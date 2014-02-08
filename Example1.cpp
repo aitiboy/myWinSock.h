@@ -6,12 +6,13 @@
 
 int main(){
 	myWinSockHttpServer a(12345); FILE *f;
-	char url[100],data[100],method[100],*newurl=url,*res=NULL;
+	char url[100],data[100],method[100],*newurl,*res=NULL;
 	a.start();
 	while(true){
 		memset(data,0,100);
 		a.myAccept();
 		a.httpAnalyser(a.myRecvString(),method,url,data);
+		newurl=url;
 		a.urlStringReplacer(newurl);
 		// ----
 		printf(newurl);
